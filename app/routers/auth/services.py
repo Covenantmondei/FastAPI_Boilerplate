@@ -1,7 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
 from datetime import timedelta, datetime, UTC
 from typing import Annotated
-
 from starlette import status
 from passlib.context import CryptContext
 from fastapi.security import OAuth2PasswordBearer
@@ -21,11 +20,9 @@ bcrypt_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 oauth_bearer = OAuth2PasswordBearer(tokenUrl="auth/token")
 
-GOOGLE_CLIENT_ID = os.environ.get('GOOGLE_CLIENT_ID') or None
-GOOGLE_CLIENT_SECRET = os.environ.get('GOOGLE_CLIENT_SECRET') or None
+GOOGLE_CLIENT_ID = os.environ.get('GOOGLE_CLIENT_ID')
+GOOGLE_CLIENT_SECRET = os.environ.get('GOOGLE_CLIENT_SECRET')
 
-if GOOGLE_CLIENT_ID is None or GOOGLE_CLIENT_SECRET is None:
-    raise Exception('Missing env variables')
 
 config_data = {'GOOGLE_CLIENT_ID': GOOGLE_CLIENT_ID, 'GOOGLE_CLIENT_SECRET': GOOGLE_CLIENT_SECRET}
 
